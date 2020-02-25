@@ -1,0 +1,10 @@
+﻿[
+  {
+    "outputFile": "TodoContent/CSS/main.css",
+    "inputFile": "TodoContent/CSS/main.scss"
+  },
+  {
+    "outputFile": "TodoContent/CSS/utilities/_u-float.css",
+    "inputFile": "TodoContent/CSS/utilities/_u-float.scss"
+  }
+]

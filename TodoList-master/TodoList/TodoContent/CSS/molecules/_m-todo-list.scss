@@ -1,0 +1,109 @@
+﻿.m-task-name {
+    width: 200px;
+    word-wrap: break-word;
+}
+
+.m-task-description {
+    width: 400px;
+    word-wrap: break-word;
+}
+
+@mixin Mobile {
+    @media only screen and (max-width: 767px) {
+        @content
+    }
+}
+
+@mixin tabletPortrait {
+    @media only screen and (min-width: 768px) and (max-width: 1023px) {
+        @content
+    }
+}
+
+@mixin tabletLandscape {
+    @media only screen and (min-width: 1024px) and (max-width: 1199px) {
+        @content
+    }
+}
+
+@mixin Desktop {
+    @media only screen and (max-width: 1200px) {
+        @content
+    }
+}
+
+
+.m-todo-action {
+    margin-top: 20px;
+    float: right;
+
+    @include Mobile {
+        margin-top: 70px;
+        margin-left: 648px;
+        width: 100%;
+        float: none;
+    }
+
+    @include tabletPortrait {
+        margin-top: 70px;
+        margin-left: 648px;
+        width: 100%;
+        float: none;
+    }
+
+    @include tabletLandscape {
+        margin-top: 70px;
+        margin-left: 648px;
+        width: 100%;
+        float: none;
+    }
+}
+
+.m-todo-task-table {
+    margin: 5px;
+}
+
+.m-todo-action-buttons {
+    width: 100px;
+}
+
+.m-todo-success-message {
+    margin-top: 15px;
+    margin-bottom: -5px !important;
+
+    @include Mobile {
+        margin-top: 75px;
+        margin-bottom: -40px !important;
+        margin-right: -183%;
+    }
+
+    @include tabletPortrait {
+        margin-top: 75px;
+        margin-bottom: -40px !important;
+        margin-right: -183%;
+    }
+
+    @include tabletLandscape {
+        margin-top: 75px;
+        margin-bottom: -40px !important;
+        margin-right: -183%;
+    }
+}
+
+.m-todo-icon-space {
+    margin-left: 6px;
+
+    @include Mobile {
+        margin-left: 0px;
+    }
+}
+
+.m-task-status-dropdown {
+    width: 280px;
+    height: 34px;
+    border-radius: 4px;
+
+    @include Mobile {
+        width: 225px;
+    }
+}

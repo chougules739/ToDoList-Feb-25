@@ -1,0 +1,7 @@
+C:\Users\sachougule\Downloads\TodoList-master\Model\bin\Debug\netstandard2.0\Model.deps.json
+C:\Users\sachougule\Downloads\TodoList-master\Model\bin\Debug\netstandard2.0\Model.dll
+C:\Users\sachougule\Downloads\TodoList-master\Model\bin\Debug\netstandard2.0\Model.pdb
+C:\Users\sachougule\Downloads\TodoList-master\Model\obj\Debug\netstandard2.0\Model.AssemblyInfoInputs.cache
+C:\Users\sachougule\Downloads\TodoList-master\Model\obj\Debug\netstandard2.0\Model.AssemblyInfo.cs
+C:\Users\sachougule\Downloads\TodoList-master\Model\obj\Debug\netstandard2.0\Model.dll
+C:\Users\sachougule\Downloads\TodoList-master\Model\obj\Debug\netstandard2.0\Model.pdb

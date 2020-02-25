@@ -1,0 +1,165 @@
+﻿@using DataModels.Enum
+@using System.Configuration
+
+@model TodoList.Models.ToDoTaskComplexType
+
+@{
+    ViewBag.Title = "Tasks";
+}
+
+<style>
+
+    tr > td {
+        padding-bottom: 0.5em;
+    }
+
+    .popupDropDown {
+        width: 225px;
+        height: 34px;
+        border-radius: 4px;
+    }
+</style>
+<script type="text/javascript">
+    var taskStatuses = '@Html.Raw(Json.Encode(Model.TaskStatus))';
+    var taskPriorities = '@Html.Raw(Json.Encode(Model.TaskPriorities))';
+    var projectType= '@Model.Project.Type';
+    var prjectId = '@Model.Project.Id';
+    var projectName = '@Model.Project.Name';
+    var populateTaskUrl = '@Url.Action("PopulateTask", "Task")';
+    var updateNormalTask = '@Url.Action("UpdateNormalTask", "Task")';
+    var insertNormalTask = '@Url.Action("InsertNormalTask", "Task")';
+    var deleteNormalTask = '@Url.Action("DeleteNormalTask", "Task")';
+    var deleteTasks = '@Url.Action("DeleteTasks", "Task")';
+</script>
+
+@Styles.Render("~/bundles/bootstrapCSS")
+@Scripts.Render("~/bundles/bootstrapJS")
+
+
+@Styles.Render("~/bundles/jqueryUiCSS")
+@Scripts.Render("~/bundles/jqueryUiJS")
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <p class="alert alert-success m-todo-success-message" id="successMessage" style="display:none;"></p>
+    <p class="alert alert-error m-todo-success-message" id="errorMessage" style="display:none;"></p>
+    <p class="m-todo-action">
+        <input type="button" id="lnkCreateNew" class="btn btn-success" value="Create New" data-ProjectId="@Model.Project.Id"
+               data-ProjectName="@Model.Project.Name" data-ProjectType="@Model.Project.Type" />
+        <input type="button" id="btnDeleteTasks" class="btn btn-danger" value="Delete selected tasks" />
+        <br />
+    </p>
+    @*<div class="u-float-right m-todo-action">
+            <p>
+                <br />
+                <input type="button" id="lnkCreateNew" class="btn btn-success" value="Create New" data-ProjectId="@Model.Project.Id"
+                       data-ProjectName="@Model.Project.Name" data-ProjectType="@Model.Project.Type" />
+                <input type="button" id="btnDeleteTasks" class="btn btn-danger" value="Delete selected tasks" />
+                <br />
+            </p>
+        </div>*@
+    <table class="table m-todo-task-table" id="table-all-tasks">
+        <thead style="background-color: gainsboro;">
+            <tr>
+                <th></th>
+                <th>Title</th>
+                <th>Description</th>
+                <th class="u-hide">Project Name</th>
+                <th>Status</th>
+                <th>Created Date</th>
+                <th>Last modified</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.TodoTasks)
+            {
+                <tr data-TaskId="@item.Id">
+                    <td>
+                        <input type="checkbox" id="chkTask" data-TaskId="@item.Id" />
+                    </td>
+                    <td>
+                        <div class="m-task-name">
+                            <label class="read-only task-name" for="" id="lblTaskName">@item.Name</label>
+                            @Html.TextBox("txtTaskName", item.Name,
+                 new { @id = "txtTaskName", @class = "update-only u-hide form-control task-name" })
+                        </div>
+                    </td>
+                    <td>
+                        <div class="m-task-description">
+                            @Html.Label(item.Description,
+                 new { @id = "lblTaskDescription", @class = "read-only task-description" })
+                            @Html.TextArea("txtTaskDescription", item.Description,
+                 new { @id = "txtTaskDescription", @class = "update-only u-hide form-control task-description" })
+                        </div>
+                    </td>
+                    <td class="u-hide">
+                        @Html.Label(Model.Project.Name, new
+                   {
+                       @id = "lblProjectName",
+                       data_ProjectId = Model.Project.Id,
+                       data_ProjectType = Model.Project.Type
+                   })
+                    </td>
+                    <td>
+                        @Html.Label("Status", item.Status == (int)TaskStatus.ToDo ? "ToDo" :
+                  item.Status == (int)TaskStatus.InProgress ? "In-Progress" : "Completed",
+                  new { data_Status = item.Status.ToString(), @id = "lblStatus", @class = "read-only" })
+                        <select class="popupDropDown update-only u-hide form-control" id="ddlStatuses">
+                            <option value="0">-- Select --</option>
+                            @foreach (var status in Model.TaskStatus)
+                            {
+                                <option value="@status.Value">@status.Text</option>
+                            }
+                        </select>
+                    </td>
+                    <td>
+                        @Html.Label(item.CreatedDate == DateTime.MinValue ? "-" : item.CreatedDate.ToShortDateString(),
+                 new { @id = "lblCreatedDate", data_CreatedDate = item.CreatedDate })
+                    </td>
+                    <td>
+                        @Html.Label(item.UpdatedDate == DateTime.MinValue ? "-" : item.UpdatedDate.ToShortDateString(),
+                 new { @id = "lblUpdatedDate" })
+                    </td>
+                    <td>
+                        <a id="lnkUpdateTask" class="glyphicon glyphicon-floppy-disk u-hide" href="#" data-ProjectId="@Model.Project.Id"
+                           data-toggle="tooltip" data-placement="bottom" title="Update"
+                           data-CreatedDate="@item.CreatedDate" data-CreatedBy="@item.CreatedBy"
+                           data-ProjectName="@Model.Project.Name" data-ProjectType="@Model.Project.Type" data-TaskId="@item.Id"></a>
+                        <span class="m-todo-icon-space"></span>
+                        <a id="lnkCancelUpdate" class="glyphicon glyphicon-ban-circle u-hide" href="#" data-ProjectId="@Model.Project.Id"
+                           data-toggle="tooltip" data-placement="bottom" title="Cancel"
+                           data-ProjectName="@Model.Project.Name" data-ProjectType="@Model.Project.Type" data-TaskId="@item.Id"></a>
+                        <a id="lnkEditTask" class="glyphicon glyphicon-pencil" href="#" data-ProjectId="@Model.Project.Id"
+                           data-toggle="tooltip" data-placement="bottom" title="Edit"
+                           data-ProjectName="@Model.Project.Name" data-ProjectType="@Model.Project.Type" data-TaskId="@item.Id"></a>
+                        <span class="m-todo-icon-space"></span>
+                        <a id="lnkRemoveTask" class="glyphicon glyphicon-trash" href="#" data-ProjectType="@Model.Project.Type"
+                           data-toggle="tooltip" data-placement="bottom" title="Delete"
+                           data-TaskId="@item.Id"></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+
+    int pageSize = Convert.ToInt32(ConfigurationManager.AppSettings["PageSize"]);
+    int count = 1;
+    <table class="m-pagination">
+        <tr>
+            @for (int i = 1; i <= Model.TodoTaskCount; i = i + pageSize)
+            {
+                <td>
+                    <div>
+                        @Html.ActionLink(count.ToString(), "GetAll", new { page = (count - 1) })
+                        @{count++;}
+                    </div>
+                </td>
+            }
+        </tr>
+    </table>
+
+    <div id="SaveTaskPopup" title="Task details" class="u-hide">@Html.Partial("_Task", Model)</div>
+}

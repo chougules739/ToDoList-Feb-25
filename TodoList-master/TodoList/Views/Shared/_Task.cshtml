@@ -1,0 +1,105 @@
+﻿@model TodoList.Models.ToDoTaskComplexType
+
+<table>
+    <tbody>
+        <tr>
+            <td>
+                <span id="lblName">Title</span>
+            </td>
+            <td>
+                <input class="form-control" id="txtName" type="text" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span id="lblDescription">Description</span>
+            </td>
+            <td>
+                <textarea class="form-control" id="txtDescription" rows="4" cols="50">
+                </textarea>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span id="lblStatus">Status</span>
+            </td>
+            <td>
+                <select class="m-task-status-dropdown" id="ddlTaskStatus">
+                    <option value="0">-- Select --</option>
+                    @foreach (var status in Model.TaskStatus)
+                    {
+                        <option value="@status.Value">@status.Text</option>
+                    }
+                </select>
+            </td>
+        </tr>
+        @*<tr>
+            <td>
+                <span id="lblProjectName">Project name</span>
+            </td>
+            <td>
+                <input class="form-control" id="txtProjectName" type="text" value="Proj 2" data-projectid="02104d21-da04-44f1-9b83-6ec4d359d664" data-projecttype="2" disabled />
+            </td>
+        </tr>
+        @if (Model.Project.Type == (int)DataModels.Enum.ProjectType.Agile)
+        {
+            <tr>
+                <td>
+                    <span id="lblEfforts">Efforts</span>
+                </td>
+                <td>
+                    <input class="form-control" id="txtEfforts" type="text" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span id="lblStoryPoints">Story points</span>
+                </td>
+                <td>
+                    <input class="form-control" id="txtStoryPoints" type="text" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span id="lblBurnedHours">Burned hours</span>
+                </td>
+                <td>
+                    <input class="form-control" id="txtBurnedHours" type="text" />
+                </td>
+            </tr>
+        }
+        else if (Model.Project.Type == (int)DataModels.Enum.ProjectType.Normal)
+        {
+            <tr>
+                <td>
+                    <span id="lblPriority">Priority</span>
+                </td>
+                <td>
+                    <select class="popupDropDown" id="ddlTaskPriorities">
+                        <option value="0">-- Select --</option>
+                        @foreach (var priority in Model.TaskPriorities)
+                        {
+                            <option value="@priority.Value">@priority.Text</option>
+                        }
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span id="lblEstimatedCompletionDate">Completion date</span>
+                </td>
+                <td>
+                    <input class="form-control hasDatepicker" id="txtEstimatedCompletionDate" type="text" />
+                </td>
+            </tr>
+        }*@
+    </tbody>
+</table>
+
+<hr />
+
+<div style="margin-left: 129px;">
+    <input class="btn btn-primary" id="btnSubmit" type="submit" value="Submit" />
+    <span style="margin-left: 16px;"></span>
+    <input class="btn btn-default" id="btnCancel" type="submit" value="Cancel">
+</div>

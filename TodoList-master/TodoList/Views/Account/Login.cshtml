@@ -1,0 +1,77 @@
+﻿@model TodoList.Models.UserModel
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <div class="form-group">
+            <div class="col-md-2"></div>
+            <div class="col-md-10">
+                <h2>Sign in</h2>
+            </div>
+        </div>
+
+        <hr />
+
+        <div class="form-group">
+            <div class="col-md-2"></div>
+            <div class="col-md-10">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.PasswordFor(model => model.Password, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" id="btnLogin" value="Login" class="btn btn-default" />
+                @Html.ActionLink("Sign up", "Signup", "Account")
+            </div>
+        </div>
+    </div>
+
+    @*<div style="margin-left:100px; margin-top:20px;">
+            <table>
+                <tr>
+                    <td colspan="2" align="center"><label>Login</label></td>
+                </tr>
+                <tr>
+                    <td><label>User name</label></td>
+                    <td>
+                        @Html.TextBoxFor(item => item.UserName)
+                    </td>
+                </tr>
+                <tr>
+                    <td><label>Password</label></td>
+                    <td>
+                        @Html.PasswordFor(item => item.Password)
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <input type="submit" id="btnLogin" value="Login" />
+                        @Html.ActionLink("Sign up", "Signup", "Account")
+                    </td>
+                </tr>
+            </table>
+        </div>*@
+}

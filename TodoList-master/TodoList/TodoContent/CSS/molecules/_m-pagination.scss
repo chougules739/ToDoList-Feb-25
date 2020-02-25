@@ -1,0 +1,18 @@
+﻿.m-pagination {
+    div {
+        margin: 2px;
+        width: 20px;
+        background-color: lightgray;
+        border-color: black;
+    }
+
+    a {
+        color: black;
+        margin-left: 5px;
+    }
+
+    .active {
+        background-color: gray;
+        border-color: black;
+    }
+}
