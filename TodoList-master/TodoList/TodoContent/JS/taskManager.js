@@ -1,6 +1,7 @@
 ﻿var taskManager = (function () {
     
-    function UpdatableRow(closestTr) {
+    function UpdatableRow(event) {
+        var closestTr = $(event.target).closest("tr");
         closestTr.find(".read-only").addClass("u-hide");
         closestTr.find(".update-only").removeClass("u-hide");
         closestTr.find("#lnkEditTask").addClass("u-hide");
@@ -10,7 +11,8 @@
         closestTr.find("#ddlStatuses").val(closestTr.find("#lblStatus").data("status")).change();
     }
 
-    function ReadonlyRow(closestTr) {
+    function ReadonlyRow(event) {
+        var closestTr = $(event.target).closest("tr");
         closestTr.find(".read-only").removeClass("u-hide");
         closestTr.find(".update-only").addClass("u-hide");
         closestTr.find("#lnkEditTask").removeClass("u-hide");
@@ -255,16 +257,12 @@
         return flag;
     }
 
-    $(document).on("click", "#btnSubmit", function () {
+    function SubmitNormalTask() {
         var projectType = $('#lnkCreateNew').data('projecttype');
         var projectId = $("#lnkCreateNew").data("projectid");
         var taskName = $("#txtName");
         var taskDescription = $("#txtDescription");
         var taskStatus = $("#ddlTaskStatus");
-
-        if (projectType == '1' && ValidateAgileTasks() == true) {
-
-        }
 
         if (projectType == '2' && ValidateNormalTasks(taskName, taskDescription, taskStatus) == true) {
 
@@ -303,22 +301,10 @@
                 }
             });
         }
-    });
+    }
 
-    $(document).on("click", "table tr td #lnkEditTask", function () {
-        UpdatableRow($(this).closest("tr"));
-    });
-
-    $(document).on("click", "table tr td #lnkCancelUpdate", function () {
-        ReadonlyRow($(this).closest("tr"));
-    });
-
-    $(document).on("click", "table tr td #lnkUpdateTask", function () {
-        UpdateTask($(this));
-    });
-
-    $(document).on("click", "table tr td #lnkRemoveTask", function () {
-        var taskId = $(this).attr('data-taskid');
+    function deleteTask(event) {
+        var taskId = $(event).attr('data-taskid');
         var del = confirm("Do you want to delete this record?");
         if (del == true) {
             $.ajax({
@@ -342,17 +328,23 @@
         }
 
         return del;
-    });
+    }
 
-    $(document).on("click", "#btnCancel", function () {
+    function closeDialog() {
         $("#SaveTaskPopup").dialog('close');
-    });
+    }
 
-    $(document).on("click", "#btnDeleteTasks", function () {
+    function openDialog() {
+        $("#SaveTaskPopup").dialog('open');
+        $("#SaveTaskPopup").removeClass("u-hide");
+        $("#txtEstimatedCompletionDate").datepicker();
+    }
+
+    function deleteTasks(event) {
         var taskIds = new Array();
         if ($('table tr td input[type="checkbox"]:checked').length > 0) {
             $('table tr td input[type="checkbox"]:checked').each(function () {
-                taskIds.push($(this).attr('data-taskid'))
+                taskIds.push($(event).attr('data-taskid'))
             });
             $.ajax({
                 url: deleteTasks,
@@ -363,26 +355,20 @@
                 }),
                 success: function () {
                     $('table tr td input[type="checkbox"]:checked').each(function () {
-                        $('table tr[data-TaskId="' + $(this).attr('data-taskid') + '"]').remove();
+                        $('table tr[data-TaskId="' + $(event).attr('data-taskid') + '"]').remove();
                     });
 
                     $('#successMessage').css('display', 'block');
                     $('#successMessage').html('Task(s) deleted successfully.');
                 },
-                error: function (ex) {
+                error: function () {
                     $('#errorMessage').css('display', 'block');
                     $('#errorMessage').html('Error while processing data.');
                 }
             });
         }
-    });
+    }
 
-    $(document).on("click", "#lnkCreateNew", function () {
-        $("#SaveTaskPopup").dialog('open');
-        $("#SaveTaskPopup").removeClass("u-hide");
-        $("#txtEstimatedCompletionDate").datepicker();
-    });
-    
     function initialize() {
         taskStatuses = JSON.parse(taskStatuses);
         taskPriorities = JSON.parse(taskPriorities);
@@ -404,6 +390,21 @@
             }
         });
 
+        $(document).on("click", "#btnSubmit", SubmitNormalTask);
+
+        $(document).on("click", "#btnCancel", closeDialog);
+
+        $(document).on("click", "#lnkCreateNew", openDialog);
+
+        $(document).on("click", "table tr td #lnkEditTask", UpdatableRow);
+
+        $(document).on("click", "#btnDeleteTasks", deleteTasks);
+
+        $(document).on("click", "table tr td #lnkCancelUpdate", ReadonlyRow);
+
+        $(document).on("click", "table tr td #lnkUpdateTask", UpdateTask);
+
+        $(document).on("click", "table tr td #lnkRemoveTask", deleteTask);
     }
 
     return {

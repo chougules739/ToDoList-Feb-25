@@ -1,5 +1,4 @@
-﻿using System.Web;
-using System.Web.Optimization;
+﻿using System.Web.Optimization;
 
 namespace TodoList
 {
@@ -42,6 +41,11 @@ namespace TodoList
 
             bundles.Add(new StyleBundle("~/bundles/jqueryUiCSS").Include(
                       "~/Content/jquery-ui.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/unobtrusiveJS").Include(
+                "~/Scripts/jquery-3.3.1.min.js",
+                "~/Scripts/jquery.validate.min.js",
+                "~/Scripts/jquery.validate.unobtrusive.min.js"));
         }
     }
 }

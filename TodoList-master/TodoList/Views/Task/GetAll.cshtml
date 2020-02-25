@@ -7,18 +7,6 @@
     ViewBag.Title = "Tasks";
 }
 
-<style>
-
-    tr > td {
-        padding-bottom: 0.5em;
-    }
-
-    .popupDropDown {
-        width: 225px;
-        height: 34px;
-        border-radius: 4px;
-    }
-</style>
 <script type="text/javascript">
     var taskStatuses = '@Html.Raw(Json.Encode(Model.TaskStatus))';
     var taskPriorities = '@Html.Raw(Json.Encode(Model.TaskPriorities))';
@@ -36,7 +24,6 @@
 @Styles.Render("~/TodoContent/css")
 @Scripts.Render("~/bundles/bootstrapJS")
 
-
 @Styles.Render("~/bundles/jqueryUiCSS")
 @Scripts.Render("~/bundles/jqueryUiJS")
 @Scripts.Render("~/TodoListBundles/jqueryUiJS")
@@ -52,15 +39,6 @@
         <input type="button" id="btnDeleteTasks" class="btn btn-danger" value="Delete selected tasks" />
         <br />
     </p>
-    @*<div class="u-float-right m-todo-action">
-            <p>
-                <br />
-                <input type="button" id="lnkCreateNew" class="btn btn-success" value="Create New" data-ProjectId="@Model.Project.Id"
-                       data-ProjectName="@Model.Project.Name" data-ProjectType="@Model.Project.Type" />
-                <input type="button" id="btnDeleteTasks" class="btn btn-danger" value="Delete selected tasks" />
-                <br />
-            </p>
-        </div>*@
     <table class="table m-todo-task-table" id="table-all-tasks">
         <thead style="background-color: gainsboro;">
             <tr>
