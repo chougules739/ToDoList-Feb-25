@@ -25,7 +25,6 @@ namespace TodoList.Controllers
 
             ToDoTaskComplexType toDoTaskComplexType = new ToDoTaskComplexType();
 
-            //Loads normal/waterfall model's project only.
             toDoTaskComplexType.Project =
                 projectManager.GetProjects().Where(x => x.Type == (int)ProjectType.Normal).FirstOrDefault();
 
@@ -61,8 +60,6 @@ namespace TodoList.Controllers
         public JsonResult PopulateTask(string projectType, string prjectId, string taskId)
         {
             ToDoTask toDoTask = new ToDoTask();
-
-            //Models.ToDoTaskComplexType
 
             if (Convert.ToInt32(projectType) == (int)ProjectType.Agile)
                 toDoTask.SetToDoTaskStrategy(new AgileTask());
@@ -107,7 +104,6 @@ namespace TodoList.Controllers
             if (dateParts.Length > 0)
                 todoTaskModel.CreatedDate = Convert.ToDateTime(dateParts[1] + "/" + dateParts[0] + "/" + dateParts[2]);
 
-            //Need to change 
             todoTaskModel.UpdatedBy = Guid.Parse(HttpContext.User.Identity.Name.Split('$')[1]);
             todoTaskModel.UserId = Guid.Parse(HttpContext.User.Identity.Name.Split('$')[1]);
 

@@ -21,7 +21,9 @@ namespace TodoList
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css",
+                      "~/Content/site.css"));
+
+            bundles.Add(new StyleBundle("~/TodoContent/css").Include(
                       "~/TodoContent/CSS/main.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrapJS").Include(
@@ -29,13 +31,14 @@ namespace TodoList
                 "~/Content/JS/bootstrap.min.js"));
 
             bundles.Add(new StyleBundle("~/bundles/bootstrapCSS").Include(
-                      "~/Content/bootstrap.min.css",
-                      "~/TodoContent/CSS/style.css"));
+                      "~/Content/bootstrap.min.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryUiJS").Include(
-                "~/TodoContent/JS/taskManager.js",
                 "~/Content/JS/jquery-1.11.1.min.js",
                 "~/Content/JS/jquery-ui.min.js"));
+
+            bundles.Add(new ScriptBundle("~/TodoListBundles/jqueryUiJS").Include(
+                "~/TodoContent/JS/taskManager.js"));
 
             bundles.Add(new StyleBundle("~/bundles/jqueryUiCSS").Include(
                       "~/Content/jquery-ui.css"));

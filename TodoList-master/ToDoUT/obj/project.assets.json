@@ -5818,11 +5818,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\sachougule\\Downloads\\TodoList-master\\ToDoUT\\ToDoUT.csproj",
+      "projectUniqueName": "C:\\Users\\sachougule\\Documents\\GitHub\\ToDoList-Feb-25\\TodoList-master\\ToDoUT\\ToDoUT.csproj",
       "projectName": "ToDoUT",
-      "projectPath": "C:\\Users\\sachougule\\Downloads\\TodoList-master\\ToDoUT\\ToDoUT.csproj",
+      "projectPath": "C:\\Users\\sachougule\\Documents\\GitHub\\ToDoList-Feb-25\\TodoList-master\\ToDoUT\\ToDoUT.csproj",
       "packagesPath": "C:\\Users\\sachougule\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\sachougule\\Downloads\\TodoList-master\\ToDoUT\\obj\\",
+      "outputPath": "C:\\Users\\sachougule\\Documents\\GitHub\\ToDoList-Feb-25\\TodoList-master\\ToDoUT\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\sachougule\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -5838,8 +5838,8 @@
       "frameworks": {
         "netcoreapp2.1": {
           "projectReferences": {
-            "C:\\Users\\sachougule\\Downloads\\TodoList-master\\Model\\DataModels.csproj": {
-              "projectPath": "C:\\Users\\sachougule\\Downloads\\TodoList-master\\Model\\DataModels.csproj"
+            "C:\\Users\\sachougule\\Documents\\GitHub\\ToDoList-Feb-25\\TodoList-master\\Model\\DataModels.csproj": {
+              "projectPath": "C:\\Users\\sachougule\\Documents\\GitHub\\ToDoList-Feb-25\\TodoList-master\\Model\\DataModels.csproj"
             }
           }
         }

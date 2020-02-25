@@ -33,11 +33,13 @@
 </script>
 
 @Styles.Render("~/bundles/bootstrapCSS")
+@Styles.Render("~/TodoContent/css")
 @Scripts.Render("~/bundles/bootstrapJS")
 
 
 @Styles.Render("~/bundles/jqueryUiCSS")
 @Scripts.Render("~/bundles/jqueryUiJS")
+@Scripts.Render("~/TodoListBundles/jqueryUiJS")
 
 @using (Html.BeginForm())
 {

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\sachougule\\Downloads\\TodoList-master\\Model\\DataModels.csproj": {}
+    "C:\\Users\\sachougule\\Documents\\GitHub\\ToDoList-Feb-25\\TodoList-master\\Model\\DataModels.csproj": {}
   },
   "projects": {
-    "C:\\Users\\sachougule\\Downloads\\TodoList-master\\Model\\DataModels.csproj": {
+    "C:\\Users\\sachougule\\Documents\\GitHub\\ToDoList-Feb-25\\TodoList-master\\Model\\DataModels.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\sachougule\\Downloads\\TodoList-master\\Model\\DataModels.csproj",
+        "projectUniqueName": "C:\\Users\\sachougule\\Documents\\GitHub\\ToDoList-Feb-25\\TodoList-master\\Model\\DataModels.csproj",
         "projectName": "DataModels",
-        "projectPath": "C:\\Users\\sachougule\\Downloads\\TodoList-master\\Model\\DataModels.csproj",
+        "projectPath": "C:\\Users\\sachougule\\Documents\\GitHub\\ToDoList-Feb-25\\TodoList-master\\Model\\DataModels.csproj",
         "packagesPath": "C:\\Users\\sachougule\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\sachougule\\Downloads\\TodoList-master\\Model\\obj\\",
+        "outputPath": "C:\\Users\\sachougule\\Documents\\GitHub\\ToDoList-Feb-25\\TodoList-master\\Model\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\sachougule\\AppData\\Roaming\\NuGet\\NuGet.Config",

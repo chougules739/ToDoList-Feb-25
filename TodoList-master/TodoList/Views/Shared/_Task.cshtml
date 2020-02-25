@@ -33,66 +33,6 @@
                 </select>
             </td>
         </tr>
-        @*<tr>
-            <td>
-                <span id="lblProjectName">Project name</span>
-            </td>
-            <td>
-                <input class="form-control" id="txtProjectName" type="text" value="Proj 2" data-projectid="02104d21-da04-44f1-9b83-6ec4d359d664" data-projecttype="2" disabled />
-            </td>
-        </tr>
-        @if (Model.Project.Type == (int)DataModels.Enum.ProjectType.Agile)
-        {
-            <tr>
-                <td>
-                    <span id="lblEfforts">Efforts</span>
-                </td>
-                <td>
-                    <input class="form-control" id="txtEfforts" type="text" />
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <span id="lblStoryPoints">Story points</span>
-                </td>
-                <td>
-                    <input class="form-control" id="txtStoryPoints" type="text" />
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <span id="lblBurnedHours">Burned hours</span>
-                </td>
-                <td>
-                    <input class="form-control" id="txtBurnedHours" type="text" />
-                </td>
-            </tr>
-        }
-        else if (Model.Project.Type == (int)DataModels.Enum.ProjectType.Normal)
-        {
-            <tr>
-                <td>
-                    <span id="lblPriority">Priority</span>
-                </td>
-                <td>
-                    <select class="popupDropDown" id="ddlTaskPriorities">
-                        <option value="0">-- Select --</option>
-                        @foreach (var priority in Model.TaskPriorities)
-                        {
-                            <option value="@priority.Value">@priority.Text</option>
-                        }
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <span id="lblEstimatedCompletionDate">Completion date</span>
-                </td>
-                <td>
-                    <input class="form-control hasDatepicker" id="txtEstimatedCompletionDate" type="text" />
-                </td>
-            </tr>
-        }*@
     </tbody>
 </table>
 
